@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProjectZoo.Models.ZooAnimal>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Zoo Simulator";
+}
+
+@section Style{
+    <link href="~/Content/progressbar-page.css" rel="stylesheet">
+}
+    <a class="btn btn-success waves-effect waves-light m-r-10" href="/home/feedall">Feed All</a>
+    <a class="btn btn-success waves-effect waves-light m-r-10" href="/home/resetall">Reinitilize/Reset</a>
+    <div class="row">
+        <div class="col-md-12 text-right" >
+        
+        <div > Current Zoo Time: <span class="zootime"></span> </div>
+        </div>
+    </div>
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                Animal Health
+                                @foreach (var item in Model)
+                                {
+                                    <h5 class="m-t-30">@item.Type @item.Id<span class="pull-right" id="span@(item.Type+item.Id)">@item.HealthLevel%</span></h5>
+                                    <div class="progress ">
+                                        <div id="div@(item.Type+item.Id)" class="progress-bar bg-danger wow animated progress-animated" style="width: @item.HealthLevel%; height:8px;" role="progressbar"></div>
+                                    </div>
+                                }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
